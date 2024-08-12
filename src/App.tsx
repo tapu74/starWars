@@ -1,9 +1,10 @@
-import "./App.css";
+import FilmsList from "./components/FilmsList";
 
 function App() {
   return (
     <>
-      <h1>Star Wars</h1>
+      <h1>Star Wars - Films</h1>
+      <FilmsList />
     </>
   );
 }
