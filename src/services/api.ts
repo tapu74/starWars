@@ -1,7 +1,9 @@
 import axios from 'axios';
+
 import { Film, Resource } from '../types';
+import { API_URL } from '../config';
 const api = axios.create({
-    baseURL: 'https://swapi.dev/api',
+    baseURL: API_URL,
 });
 
 export const getFilms = async (): Promise<Film[]> => {
@@ -18,16 +20,3 @@ export const getResourceDetails = async (url: string): Promise<Resource> => {
     const response = await axios.get<Resource>(url);
     return response.data;
 };
-
-// // Helper function to extract ID from URL
-// export const getIdFromUrl = (url: string) => {
-//     const parts = url.split('/');
-//     return parts[parts.length - 2];
-// };
-
-// Helper function to get resource type from URL
-// export const getResourceTypeFromUrl = (url: string | undefined) => {
-//     if (!url) return '';
-//     const parts = url.split('/');
-//     return parts[parts.length - 3] || '';
-// };
