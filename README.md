@@ -62,6 +62,10 @@ npm run build
 
 This will generate a `dist` folder with the production-ready files.
 
+## Here is a public url 
+
+http://starwars1.s3-website.eu-central-1.amazonaws.com/
+
 
 ## Contact
 
