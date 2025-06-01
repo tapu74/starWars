@@ -6,17 +6,42 @@ const api = axios.create({
     baseURL: API_URL,
 });
 
+// Centralized error handler
+function handleApiError(error: unknown) {
+    if (axios.isAxiosError(error)) {
+        // You can customize this logic as needed
+        const message = error.response?.data?.message || error.message || 'API Error';
+        throw new Error(message);
+    }
+    throw error;
+}
+
 export const getFilms = async (): Promise<Film[]> => {
-    const response = await api.get('/films');
-    return response.data.results;
+    try {
+        const response = await api.get('/films');
+        return response.data.results;
+    } catch (error) {
+        handleApiError(error);
+        throw error; // for type safety
+    }
 };
 
 export const getFilmDetails = async (id: string): Promise<Film> => {
-    const response = await api.get(`/films/${id}`);
-    return response.data;
+    try {
+        const response = await api.get(`/films/${id}`);
+        return response.data;
+    } catch (error) {
+        handleApiError(error);
+        throw error;
+    }
 };
 
 export const getResourceDetails = async (url: string): Promise<Resource> => {
-    const response = await axios.get<Resource>(url);
-    return response.data;
+    try {
+        const response = await axios.get<Resource>(url);
+        return response.data;
+    } catch (error) {
+        handleApiError(error);
+        throw error;
+    }
 };
